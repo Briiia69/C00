@@ -35,10 +35,10 @@ void	ft_print(int *tab, int n)
 
 	i = 0;
 	while (i < n)
-        {
-                ft_putchar(tab[i] + '0');
-                i++;
-        }
+	{
+		ft_putchar(tab[i] + '0');
+		i++;
+	}
 	if (tab[0] != (10 - n))
 		ft_putstr(", ");
 }
