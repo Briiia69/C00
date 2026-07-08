@@ -17,34 +17,44 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-void	print_comb_rec(int *tab, int depth, int start, int *first, int n)
+void	ft_putstr(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		ft_putchar(s[i]);
+		i++;
+	}
+}
+
+void	ft_print(int *tab, int n)
+{
+	int	i;
+
+	i = 0;
+	while (i < n)
+        {
+                ft_putchar(tab[i] + '0');
+                i++;
+        }
+	if (tab[0] != (10 - n))
+		ft_putstr(", ");
+}
+
+void	print_comb_rec(int *tab, int depth, int start, int n)
 {
 	int	i;
 
 	if (depth == n)
+		ft_print(tab, n);
+	i = start;
+	while (i < 10)
 	{
-		if (!*first)
-		{
-			ft_putchar(',');
-			ft_putchar(' ');
-		}
-		*first = 0;
-		i = 0;
-		while (i < n)
-		{
-			ft_putchar(tab[i] + '0');
-			i++;
-		}
-	}
-	else
-	{
-		i = start;
-		while (i < 10)
-		{
-			tab[depth] = i;
-			print_comb_rec(tab, depth + 1, i + 1, first, n);
-			i++;
-		}
+		tab[depth] = i;
+		print_comb_rec(tab, depth + 1, i + 1, n);
+		i++;
 	}
 }
 
@@ -63,11 +73,5 @@ void	ft_print_combn(int n)
 	first = 1;
 	i = 0;
 	if (n > 0)
-		print_comb_rec(tab, 0, 0, &first, n);
+		print_comb_rec(tab, 0, 0, n);
 }
-
-// int	main(void)
-// {
-// 	ft_print_combn(2);
-// 	return (0);
-// }
